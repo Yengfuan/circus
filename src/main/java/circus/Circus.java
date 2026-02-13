@@ -42,14 +42,54 @@ public class Circus {
     }
 
     public static void main(String[] args) {
-        makeAnimalsTalk();
-        System.out.println("Total value of animals " + calculateAssetValue(animals));
-        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+//        animals[3] = new Elephant("Strong One");
+//        System.out.println("Number of animals in circus: " + animals.length);
+//
+//        for (Animal a : animals) {
+//            System.out.println(a);
+//        }
+
+        ArrayList<Animal> animalArrayList = new ArrayList<>(Arrays.asList(animals));
+        printNumberOfAnimals(animalArrayList);
+        animalArrayList.add(new Elephant("Strong One"));
+
+//        printAllAnimals(animalArrayList);
+        animalArrayList.add(new Duck("Andy"));
+        Tiger sheerKhan = new Tiger("Sheer Khan");
+        animalArrayList.add(sheerKhan);
+        Parrot bobby = new Parrot("Bobby");
+        animalArrayList.add(bobby);
+
+        System.out.println("Position of Sheer Khan in array list is: " + animalArrayList.indexOf(sheerKhan));
+
+        System.out.println("before sorting:");
+        printAllAnimals(animalArrayList);
+
+        animalArrayList.sort(Animal.AnimalNameComparator);
+        System.out.println("after sorting:");
+        printAllAnimals(animalArrayList);
+
+//        makeAnimalsTalk();
+//        System.out.println("Total value of animals " + calculateAssetValue(animals));
+//        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+    }
 
     private static void printAllAnimals(ArrayList<Animal> animalArrayList) {
         for (Animal a : animalArrayList) {
             System.out.println(a);
         }
     }
+
+    private static void printNumberOfAnimals(ArrayList<Animal> animalArrayList) {
+        System.out.println("Number of animals in circus: " + animalArrayList.size());
+    }
+
+    private static Animal findAnimal(ArrayList<Animal> animalArrayList, String name) {
+        for (Animal a : animalArrayList) {
+            if (a.name == name) {
+                return a;
+            }
+        }
+        return null;
     }
 }
